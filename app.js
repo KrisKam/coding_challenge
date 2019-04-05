@@ -1,15 +1,13 @@
-let arr = [
-  [0, 1, 0, 0, 0],
-  [1, 0, 0, 1, 1],
-  [1, 1, 0, 0, 1],
-  [0, 1, 0, 0, 0],
-  [1, 0, 0, 0, 1]
-];
 
+const setOneOrZero = (sum, arr, i, j) => {
+  if (sum === 3 || (sum === 2 && arr[i][j] === 1)) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
 
-nextGen(arr);
-
-function nextGen(arr) {
+const nextGen = (arr) => {
 
   let newArr = [];
   
@@ -18,7 +16,7 @@ function nextGen(arr) {
     let innerArr = [];
 
     for (let j = 0; j < arr[i].length; j++) {
-      
+
       let cell1 = (i - 1) < 0 || (j - 1) < 0 ? 0 : arr[i - 1][j - 1];
       let cell2 = (i - 1) < 0 ? 0 : arr[i - 1][j];
       let cell3 = (i - 1) < 0 || (j + 1) === arr[i].length ? 0 : arr[i - 1][j + 1];
@@ -30,11 +28,8 @@ function nextGen(arr) {
       
       let sum = cell1 + cell2 + cell3 + cell4 + cell5 + cell6 + cell7 + cell8;
 
-      if (sum === 3 || (sum === 2 && arr[i][j] === 1)) {
-        innerArr.push(1);
-      } else {
-        innerArr.push(0);
-      }
+      let oneOrZero = setOneOrZero(sum, arr, i, j);
+      innerArr.push(oneOrZero)
 
     }
 
@@ -45,3 +40,9 @@ function nextGen(arr) {
   console.log(newArr);
   return newArr;
 }
+
+
+module.exports = {
+  nextGen,
+  setOneOrZero
+};

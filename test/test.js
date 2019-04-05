@@ -3,11 +3,38 @@ const application = require('../app.js');
 
 describe('Application', () => {
 
-  it('returns desired result', () => {
-    assert.deepEqual(application(arguments), 'desired result')
+  // [[0, 0, 0], [1, 0, 0], [1, 1, 0]]
+
+  it('should assign value of 0 or 1', () => {
+    assert.isNumber(application.setOneOrZero(2, [[0, 1, 0], [1, 0, 0], [1, 1, 0]], 1, 0), "give a value of 0 or 1");
   })
 
-  it('returns a next generation array', () => {
-    assert.isArray(application([[0,1,0], [1,0,1], [1,1,0]], 'is an array'))
+  it('should return an array', () => {
+    assert.isArray(application.nextGen([
+        [0, 1, 0],
+        [1, 0, 0],
+        [1, 1, 0],
+      ]), 'this is an array');
   })
+
+  it('should return next generation array of arrays', () => {
+    assert.deepEqual(application.nextGen([
+        [0, 1, 0, 0, 0],
+        [1, 0, 0, 1, 1],
+        [1, 1, 0, 0, 1],
+        [0, 1, 0, 0, 0],
+        [1, 0, 0, 0, 1]
+      ]), [[0, 0, 0, 0, 0], [1, 0, 1, 1, 1], [1, 1, 1, 1, 1], [0, 1, 0, 0, 0], [0, 0, 0, 0, 0]]);
+  })
+
+  it('should return next generation array of arrays', () => {
+    assert.deepEqual(application.nextGen([
+        [0, 0, 0, 0, 0, 1],
+        [1, 0, 1, 1, 1, 0],
+        [1, 1, 1, 1, 1, 0],
+        [0, 1, 0, 0, 0, 1],
+        [0, 0, 0, 0, 0, 0]
+      ]), [[0, 0, 0, 1, 1, 0], [1, 0, 0, 0, 0, 1], [1, 0, 0, 0, 0, 1], [1, 1, 0, 1, 1, 0], [0, 0, 0, 0, 0, 0]]);
+  })
+
 });
