@@ -37,7 +37,6 @@ const nextGen = (arr) => {
 
   }
 
-  console.log(newArr);
   return newArr;
 }
 
