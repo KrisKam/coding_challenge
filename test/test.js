@@ -3,38 +3,48 @@ const application = require('../app.js');
 
 describe('Application', () => {
 
-  // [[0, 0, 0], [1, 0, 0], [1, 1, 0]]
+  describe('setOneOrZero()', () => {
 
-  it('should assign value of 0 or 1', () => {
-    assert.isNumber(application.setOneOrZero(2, [[0, 1, 0], [1, 0, 0], [1, 1, 0]], 1, 0), "give a value of 0 or 1");
+    it('setOneOrZero should assign value of 0 or 1', () => {
+      let result = application.setOneOrZero(2, [[0, 1, 0], [1, 0, 0], [1, 1, 0]], 1, 0);
+      assert.isNumber(result, "give a value of 0 or 1");
+    })
+
   })
 
-  it('should return an array', () => {
-    assert.isArray(application.nextGen([
+  describe('nextGen()', () => {
+
+    it('nextGen should return an array', () => {
+      let result = application.nextGen([
         [0, 1, 0],
         [1, 0, 0],
         [1, 1, 0],
-      ]), 'this is an array');
-  })
-
-  it('should return next generation array of arrays', () => {
-    assert.deepEqual(application.nextGen([
+      ]);
+      assert.isArray(result, 'this is an array');
+    })
+  
+    it('nextGen should return next generation array of arrays', () => {
+      let result = application.nextGen([
         [0, 1, 0, 0, 0],
         [1, 0, 0, 1, 1],
         [1, 1, 0, 0, 1],
         [0, 1, 0, 0, 0],
         [1, 0, 0, 0, 1]
-      ]), [[0, 0, 0, 0, 0], [1, 0, 1, 1, 1], [1, 1, 1, 1, 1], [0, 1, 0, 0, 0], [0, 0, 0, 0, 0]]);
-  })
-
-  it('should return next generation array of arrays', () => {
-    assert.deepEqual(application.nextGen([
+      ]);
+      assert.deepEqual(result, [[0, 0, 0, 0, 0], [1, 0, 1, 1, 1], [1, 1, 1, 1, 1], [0, 1, 0, 0, 0], [0, 0, 0, 0, 0]]);
+    })
+  
+    it('nextGen should return next generation array of arrays', () => {
+      let result = application.nextGen([
         [0, 0, 0, 0, 0, 1],
         [1, 0, 1, 1, 1, 0],
         [1, 1, 1, 1, 1, 0],
         [0, 1, 0, 0, 0, 1],
         [0, 0, 0, 0, 0, 0]
-      ]), [[0, 0, 0, 1, 1, 0], [1, 0, 0, 0, 0, 1], [1, 0, 0, 0, 0, 1], [1, 1, 0, 1, 1, 0], [0, 0, 0, 0, 0, 0]]);
+      ]);
+      assert.deepEqual(result, [[0, 0, 0, 1, 1, 0], [1, 0, 0, 0, 0, 1], [1, 0, 0, 0, 0, 1], [1, 1, 0, 1, 1, 0], [0, 0, 0, 0, 0, 0]]);
+    })
+
   })
 
 });
