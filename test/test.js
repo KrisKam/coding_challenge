@@ -3,10 +3,10 @@ const application = require('../app.js');
 
 describe('Application', () => {
 
-  describe('setOneOrZero()', () => {
+  describe('getAliveOrDead()', () => {
 
-    it('setOneOrZero should assign value of 0 or 1', () => {
-      let result = application.setOneOrZero(2, [[0, 1, 0], [1, 0, 0], [1, 1, 0]], 1, 0);
+    it('getAliveOrDead should assign value of 0 or 1', () => {
+      let result = application.getAliveOrDead(2, [[0, 1, 0], [1, 0, 0], [1, 1, 0]], 1, 0);
       assert.isNumber(result, "give a value of 0 or 1");
     })
 
